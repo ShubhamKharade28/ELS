@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <li>Dipak</li>
         <li>Sumit</li>
       </ul>
+      <Link href="https://github.com/ShubhamKharade28/ELS">Go to check code</Link>
     </main>
   )
 } 
