@@ -1,18 +1,16 @@
-import Link from "next/link";
-
+'use client';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+  //if(!user) then push to page login 
+  //if usertype = student then push to student dashboard
+  //else if usertype = admin then push to admin dashboard
+  const router = useRouter();
+  router.push('/signin');
   return (
     <main className="container">
-      <h2>Welcome to Elective Allotment Systems</h2>
-      <h4>This is made as a solution for uneven distribution of elective subjects and to maintain diversity</h4>
-      <h4>Developers</h4>
-      <ul className="text-lg container bg-emerald-900 text-white rounded-lg py-6">
-        <li>Shubham</li>
-        <li>Dipak</li>
-        <li>Sumit</li>
-      </ul>
-      <Link href="https://github.com/ShubhamKharade28/ELS">Go to check code</Link>
+      
     </main>
   )
 } 

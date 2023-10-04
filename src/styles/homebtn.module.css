@@ -1,0 +1,8 @@
+.homebtn {
+    position:absolute;
+    top:30px;
+    left:30px;
+    background: #D7DFEF;
+    color: #091836;
+    @apply py-4 px-2 text-lg rounded-lg;
+}
