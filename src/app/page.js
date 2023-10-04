@@ -10,7 +10,7 @@ export default function Home() {
   router.push('/signin');
   return (
     <main className="container">
-      
+      <h1>Welcome to elective-allotment-system </h1>
     </main>
   )
 } 
