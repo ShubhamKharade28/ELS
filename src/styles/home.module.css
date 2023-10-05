@@ -1,0 +1,34 @@
+
+.container {
+    @apply flex flex-col justify-center items-center w-screen h-screen gap-20 text-white overflow-hidden;
+    background: #091836;
+}
+
+.container::-webkit-scrollbar {
+    display:none;
+}
+
+.container h2 {
+    @apply text-center;
+}
+
+.container h2::before {
+    content: '';
+    width:0;
+}
+
+.container a {
+    @apply border-b-2 p-1 border-b-white text-lg bg-transparent; 
+}
+
+.container a:hover {
+    box-shadow: 1px 1px 20px #3f4d69;
+    background: #243047;
+    scale:1.05;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+}
+
+.container a:focus {
+    scale: 0.95;
+}

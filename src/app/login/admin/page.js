@@ -8,12 +8,12 @@ const AdminLogin = () => {
         <div className={styles.container}>
             <HomeBtn />
             <h2>
-                Signin as admin
+                Login as admin
             </h2>
             <form>
                 <input type='email' placeholder='Email'/>
                 <input type='password' placeholder='Password'/>
-                <button>Signin</button>
+                <button>Login</button>
             </form>
         </div>
     )

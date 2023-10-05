@@ -12,9 +12,14 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background: #091836;
 }
 
 :root:-webkit-scrollbar {
+  display:none;
+}
+
+main:-webkit-scrollbar {
   display:none;
 }
 

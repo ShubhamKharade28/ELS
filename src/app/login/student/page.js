@@ -3,7 +3,8 @@ import styles from '@/styles/auth.module.css';
 import { motion } from 'framer-motion';
 import HomeBtn from '@/app/components/homebtn';
 
-const AdminRegister = () => {
+const StudentLogin = () => {
+
     return (
         <div className={styles.container}>
             <HomeBtn />
@@ -14,19 +15,17 @@ const AdminRegister = () => {
                     transition: { duration: 0.4}
                 }}
             >
-                Register as admin
+                Login as student
             </motion.h2>
             <form>
-                <input
-                 type='text' placeholder='Enter your email' />
-                <input
-                 type='text' placeholder='Enter your name' />
-                <input
-                 type='password' placeholder='Create a password' />
-                <button>Register</button>
+                <input type='text' placeholder='PRN'
+                />
+                <input type='password' placeholder='Password'
+                />
+                <button>Login</button>
             </form>
         </div>
     )
 }
 
-export default AdminRegister;
+export default StudentLogin;

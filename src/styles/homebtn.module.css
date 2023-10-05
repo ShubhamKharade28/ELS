@@ -4,5 +4,14 @@
     left:30px;
     background: #D7DFEF;
     color: #091836;
-    @apply py-4 px-2 text-lg rounded-lg;
+    @apply py-3 px-5 text-lg rounded-lg;
+}
+
+.homebtn:hover {
+    box-shadow: 4px 4px 20px #3f4d69;
+    scale:1.05;
+}
+
+.homebtn:focus {
+    scale: 0.95;
 }
