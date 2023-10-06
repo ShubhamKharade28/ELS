@@ -60,7 +60,7 @@ const AdminRegister = () => {
 
         console.log(name,email,password);
 
-        let res = await fetch('/api/auth/regter', {
+        let res = await fetch('/api/auth/register', {
             method: 'POST',
             body: JSON.stringify({
                 name,
