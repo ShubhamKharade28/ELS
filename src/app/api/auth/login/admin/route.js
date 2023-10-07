@@ -13,7 +13,6 @@ export async function POST(req){
         }
 
         await client.connect();
-        await client.db('ele-allot').command({ ping: 1});
 
         let admin = await Admin.findOne({ email: req.email});
         if(!admin){

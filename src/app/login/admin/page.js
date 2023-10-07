@@ -13,9 +13,10 @@ const AdminLogin = () => {
         
         if(email=='' || password==''){
             alert('Empty input fields');
+            return;
         }
 
-        const res = await fetch('/api/auth/login/admin', {
+        let res = await fetch('/api/auth/login/admin', {
             method: 'POST',
             body: JSON.stringify({
                 email,
@@ -25,6 +26,8 @@ const AdminLogin = () => {
                 'Content-Type': 'application/json',
             }
         });
+
+        res = await res.json();
 
         if(res.error){
             alert(error);

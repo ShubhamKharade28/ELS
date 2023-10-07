@@ -1,4 +1,3 @@
-// import mongoose from "mongoose";
 import { database } from "../db/db.config";
 
 // const AdminSchema = new mongoose.Schema({

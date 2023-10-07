@@ -8,7 +8,6 @@ export async function POST(req){
     try {
         req = await req.json();
         await client.connect();
-        await client.db('ele-allot').command({ ping: 1});
 
         if(!req.name || !req.email || !req.password){
             client.close();

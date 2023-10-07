@@ -28,7 +28,8 @@
     /* background: #ABB0DB; */
     background: #D7DFEF;
     color: #091836;
-    @apply text-lg py-3 px-6 lg:px-8 mt-6 rounded-lg;
+    letter-spacing: 0.4px;
+    @apply text-lg py-3 px-6 lg:px-8 mt-6 rounded-lg font-semibold ;
 }
 
 .container form button:hover {

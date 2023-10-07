@@ -1,4 +1,3 @@
-
 import client from "@/utils/db/db.config";
 import { NextResponse } from "next/server";
 import Elective from "@/utils/models/elective";
@@ -19,7 +18,6 @@ export async function POST(req){
         }
 
         await client.connect();
-        await client.db('ele-allot').command({ ping: 1});
 
         const subjects = req.subjects;
         let subjectList = [];

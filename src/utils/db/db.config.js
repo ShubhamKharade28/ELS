@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-// export const connectionStr = process.env.connectionStr;
+// const uri = 'mongodb://127.0.0.1:27017'
 const uri = 'mongodb+srv://shubhamk28:Shubham1234567@cluster0.w5z6khr.mongodb.net/ele-allot?retryWrites=true&w=majority';
 
 export const client = new MongoClient(uri, {
@@ -11,6 +11,6 @@ export const client = new MongoClient(uri, {
     }
 });
 
-export const database = await client.db("ele-allot");
+export const database = client.db("ele-allot");
 
 export default client;
