@@ -1,0 +1,11 @@
+
+.loader {
+    @apply w-7 h-7 rounded-full bg-transparent;
+    border-top-color: #091836;
+    border-top-width: 5px;
+}
+
+.loaderContainer {
+    @apply px-4;
+}
+

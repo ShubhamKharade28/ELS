@@ -2,6 +2,7 @@
 import styles from '@/styles/auth.module.css';
 import { motion } from 'framer-motion';
 import HomeBtn from '@/app/components/homebtn';
+import Loader from '@/app/components/loader';
 import { useState } from 'react';
 
 const AdminRegister = () => {
@@ -9,6 +10,7 @@ const AdminRegister = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const validPass = () => {
         const nums = ['0','1','2','3','4','5','6','7','8','9'];
@@ -58,7 +60,7 @@ const AdminRegister = () => {
             return;
         }
 
-        console.log(name,email,password);
+        setLoading(true);
 
         let res = await fetch('/api/auth/register', {
             method: 'POST',
@@ -72,7 +74,8 @@ const AdminRegister = () => {
             }
         });
         res = await res.json();
-        console.log(res);
+
+        setLoading(false);
 
         if(res.error){
             alert(res.error);
@@ -101,7 +104,11 @@ const AdminRegister = () => {
                  type='text' placeholder='Enter your name' />
                 <input  onChange={(e) => setPassword(e.target.value)}
                  type='password' placeholder='Create a password' />
-                <button onClick={registerHandler}>Register</button>
+                <button onClick={registerHandler}>
+                {
+                    loading ? <Loader /> : "Login"
+                }
+                </button>
             </form>
         </div>
     )

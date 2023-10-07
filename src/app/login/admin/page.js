@@ -1,12 +1,14 @@
 "use client";
 import styles from '@/styles/auth.module.css';
 import HomeBtn from '@/app/components/homebtn';
+import Loader from '@/app/components/loader';
 import { useState } from 'react';
 
 const AdminLogin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState('');
 
     const loginHandler = async (e) => {
         e.preventDefault();
@@ -15,6 +17,8 @@ const AdminLogin = () => {
             alert('Empty input fields');
             return;
         }
+
+        setLoading(true);
 
         let res = await fetch('/api/auth/login/admin', {
             method: 'POST',
@@ -28,6 +32,8 @@ const AdminLogin = () => {
         });
 
         res = await res.json();
+
+        setLoading(false);
 
         if(res.error){
             alert(error);
@@ -50,7 +56,9 @@ const AdminLogin = () => {
                 <input type='password' placeholder='Password' 
                     onChange={(e) =>setPassword(e.target.value)}/>
                 <button onClick={(e) => loginHandler(e)}>
-                    Login
+                {
+                    loading ? <Loader /> : "Register"
+                }
                 </button>
             </form>
         </div>
