@@ -1,6 +1,5 @@
 "use style";
 import styles from '@/styles/homebtn.module.css';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const HomeBtn = () => {

@@ -1,0 +1,53 @@
+
+.menuContainer {
+    background: #d7dfef;
+    color: #091836;
+    position: absolute;
+    z-index: 20;
+    top:10px;
+    left:10px;
+    height: 95%;
+    min-width: 180px;
+    max-width: 250px;
+    @apply flex flex-col items-center
+    justify-around w-1/2 md:w-1/6 overflow-hidden rounded-lg py-4 px-2;
+}
+
+.hamburgerBtn, .crossBtn {
+    @apply p-5;
+}
+
+.hamburgerBtn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 10;
+    background: #D7DFEF;
+    @apply py-3 px-5 text-lg rounded-lg;
+}
+
+.menus {
+    @apply flex flex-col gap-5 h-full justify-between;
+}
+
+.crossBtn {
+    @apply w-full flex justify-center items-center;
+    border-bottom: #0918369a 1px solid;
+}
+
+.profile {
+    @apply flex flex-col gap-4 px-2 w-full justify-center items-center py-4;
+    border-top: 1px solid #0918369a;
+}
+
+.profile span {
+    @apply text-sm;
+}
+
+.menus ul {
+    @apply flex flex-col h-72 items-center justify-start text-lg gap-3;
+}
+
+.logoutBtn {
+    @apply flex w-full gap-3 justify-center items-center py-4;
+}

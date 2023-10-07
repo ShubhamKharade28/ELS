@@ -3,12 +3,14 @@ import styles from '@/styles/auth.module.css';
 import HomeBtn from '@/app/components/homebtn';
 import Loader from '@/app/components/loader';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AdminLogin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
+    const router = useRouter();
 
     const loginHandler = async (e) => {
         e.preventDefault();
@@ -41,6 +43,13 @@ const AdminLogin = () => {
             alert('Incorrect password');
         }else{
             alert('Successful');
+            localStorage.setItem('admin', {
+                email: email,
+                password: password,
+            })
+            setEmail('');
+            setPassword('');
+            router.push('/dashboard/admin');
         }
     }
 
@@ -51,9 +60,9 @@ const AdminLogin = () => {
                 Login as admin
             </h2>
             <form>
-                <input type='email' placeholder='Email' 
+                <input type='email' placeholder='Email' value={email}
                     onChange={(e) => setEmail(e.target.value)}/>
-                <input type='password' placeholder='Password' 
+                <input type='password' placeholder='Password' value={password}
                     onChange={(e) =>setPassword(e.target.value)}/>
                 <button onClick={(e) => loginHandler(e)}>
                 {

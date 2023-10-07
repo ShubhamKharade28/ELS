@@ -1,0 +1,5 @@
+
+.dashboardContainer {
+    background: #091836;
+    @apply flex flex-col justify-center items-center min-h-screen w-screen overflow-hidden;
+}

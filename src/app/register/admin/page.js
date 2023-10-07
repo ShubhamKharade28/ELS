@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import HomeBtn from '@/app/components/homebtn';
 import Loader from '@/app/components/loader';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AdminRegister = () => {
 
@@ -11,6 +12,7 @@ const AdminRegister = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const validPass = () => {
         const nums = ['0','1','2','3','4','5','6','7','8','9'];
@@ -81,6 +83,14 @@ const AdminRegister = () => {
             alert(res.error);
         }else{
             alert('Successful');
+            localStorage.setItem('admin', {
+                email: email,
+                name: name,
+            });
+            setName('');
+            setEmail('');
+            setPassword('');
+            router.push('/dashboard/admin');
         }
     }
 
@@ -98,12 +108,12 @@ const AdminRegister = () => {
                 Register as admin
             </motion.h2>
             <form>
-                <input  onChange={(e) => setEmail(e.target.value)}
-                 type='text' placeholder='Enter your email' />
+                <input  onChange={(e) => setEmail(e.target.value)} 
+                 type='text' placeholder='Enter your email' value={email}/>
                 <input  onChange={(e) => setName(e.target.value)}
-                 type='text' placeholder='Enter your name' />
+                 type='text' placeholder='Enter your name' value={email}/>
                 <input  onChange={(e) => setPassword(e.target.value)}
-                 type='password' placeholder='Create a password' />
+                 type='password' placeholder='Create a password' value={password}/>
                 <button onClick={registerHandler}>
                 {
                     loading ? <Loader /> : "Register"
