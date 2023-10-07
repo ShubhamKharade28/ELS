@@ -106,7 +106,7 @@ const AdminRegister = () => {
                  type='password' placeholder='Create a password' />
                 <button onClick={registerHandler}>
                 {
-                    loading ? <Loader /> : "Login"
+                    loading ? <Loader /> : "Register"
                 }
                 </button>
             </form>

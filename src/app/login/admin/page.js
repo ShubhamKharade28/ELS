@@ -57,7 +57,7 @@ const AdminLogin = () => {
                     onChange={(e) =>setPassword(e.target.value)}/>
                 <button onClick={(e) => loginHandler(e)}>
                 {
-                    loading ? <Loader /> : "Register"
+                    loading ? <Loader /> : "Login"
                 }
                 </button>
             </form>
