@@ -1,4 +1,4 @@
-import connectDB from "@/utils/db/db.config";
+import client from "@/utils/db/db.config";
 import Admin from "@/utils/models/admin";
 import bcryptjs from "bcryptjs";
 import { NextResponse } from "next/server";
@@ -12,7 +12,8 @@ export async function POST(req){
             },{status:422});
         }
 
-        await connectDB();
+        await client.connect();
+        await client.db('ele-allot').command({ ping: 1});
 
         let admin = await Admin.findOne({ email: req.email});
         if(!admin){

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { connectionStr } from "@/utils/db/db.config";
+
+import client from "@/utils/db/db.config";
 import { NextResponse } from "next/server";
 import Elective from "@/utils/models/elective";
 
@@ -18,7 +18,8 @@ export async function POST(req){
             }, { status: 422 });
         }
 
-        await mongoose.connect(connectionStr);
+        await client.connect();
+        await client.db('ele-allot').command({ ping: 1});
 
         const subjects = req.subjects;
         let subjectList = [];
@@ -31,13 +32,13 @@ export async function POST(req){
             });
         });
 
-        let newElective = new Elective({
+        let newElective = {
             name: req.name,
             admin_name: req.admin_name,
             subjects: subjectList,
-        });
+        };
         
-        let res = await newElective.save();
+        let res = await Elective.insertOne(newElective);
 
         return NextResponse.json(res);
 
