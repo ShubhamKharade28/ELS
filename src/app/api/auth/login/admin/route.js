@@ -1,7 +1,6 @@
-import { connectionStr } from "@/utils/db/db.config";
+import connectDB from "@/utils/db/db.config";
 import Admin from "@/utils/models/admin";
 import bcryptjs from "bcryptjs";
-import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function POST(req){
@@ -13,7 +12,7 @@ export async function POST(req){
             },{status:422});
         }
 
-        await mongoose.connect(connectionStr);
+        await connectDB();
 
         let admin = await Admin.findOne({ email: req.email});
         if(!admin){

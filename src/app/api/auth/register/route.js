@@ -1,15 +1,17 @@
-import mongoose from "mongoose";
+
 import Admin from "@/utils/models/admin";
-import { connectionStr } from "@/utils/db/db.config";
+import client from "@/utils/db/db.config";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
 export async function POST(req){
     try {
         req = await req.json();
-        await mongoose.connect(connectionStr);
+        await client.connect();
+        await client.db('ele-allot').command({ ping: 1});
 
         if(!req.name || !req.email || !req.password){
+            client.close();
             return NextResponse.json({
                 error: 'INVALID_CREDENTIALS'
             });
@@ -17,6 +19,7 @@ export async function POST(req){
 
         let exist = await Admin.findOne({ email: req.email});
         if(exist){
+            client.close();
             return NextResponse.json({
                 error: 'EXISTING_EMAIL'
             });
@@ -24,16 +27,18 @@ export async function POST(req){
 
         const hashedPass = await bcrypt.hash(req.password, 10);
 
-        const newAdmin = new Admin({
+        const newAdmin = {
             name: req.name,
             email: req.email,
             password: hashedPass,
-        });
+        };
 
-        await newAdmin.save();
+        await Admin.insertOne(newAdmin);
+        client.close();
         return NextResponse.json(newAdmin);
     }
     catch(error){
+        client.close();
         return NextResponse.json({
             error:error
         });
