@@ -1,5 +1,38 @@
 
+
 .dashboardContainer {
-    background: #091836;
+    --medium-color: #3f4d69;
+    --dark-color: #091836;
+    --light-color: #d7dfef;
+
+    background: var(--dark-color);
     @apply flex flex-col justify-center items-center min-h-screen w-screen overflow-hidden;
+}
+
+.electivesContainer {
+    min-width: 400px;
+    @apply flex flex-col h-screen gap-3
+    items-center justify-start mt-32 w-11/12 md:w-3/5 lg:w-1/2;
+}
+
+.elective {
+    background: var(--light-color);
+    @apply flex flex-col items-start gap-4
+    h-auto w-full py-3 px-4 md:px-8 rounded-lg;
+}
+
+.electiveGrid{
+    @apply flex justify-between w-full gap-2;
+}
+
+.electiveGrid > div {
+    @apply w-full flex flex-col gap-2 ml-3;
+}
+
+.electiveGrid label {
+    @apply text-lg font-semibold;
+}
+
+.subjects {
+    @apply flex flex-col text-sm w-full;
 }

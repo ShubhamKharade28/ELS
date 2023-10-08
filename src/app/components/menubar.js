@@ -2,16 +2,27 @@
 import styles from '@/styles/menubar.module.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
-import { BiLogOut } from 'react-icons/bi';
+import { BiLogOut, BiPointer } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const sidebarVariants = {
     open: {
         x: 0,
+        opacity: 1,
     },
     closed: {
-        x: -1000,
+        x: -600,
+        opacity: 0
+    }
+}
+
+const btnVariants = {
+    open: {
+        opacity: 0,
+    },
+    closed: {
+        opacity: 1
     }
 }
 
@@ -21,10 +32,16 @@ const Menubar = () => {
 
     return (
         <div>
-            <button className={styles.hamburgerBtn} onClick={() => setIsOpen(true)}>
+            <motion.button className={styles.hamburgerBtn} onClick={() => setIsOpen(true)}
+                variants={btnVariants}
+                animate={isOpen ? "open":"closed"}
+                transition={{
+                    duration: 0.2}}
+            >
                 <GiHamburgerMenu size={20} color={'#091836'} />
-            </button>
+            </motion.button>
             <motion.div className={styles.menuContainer}
+                initial={"closed"}
                 variants={sidebarVariants}
                 animate={isOpen ? "open":"closed"}
                 transition={{
@@ -35,7 +52,8 @@ const Menubar = () => {
             >
                 <div className={styles.menus}>
                     <button className={styles.crossBtn} >
-                            <RxCross2  size={30} color={'#091836'} onClick={() => setIsOpen(false)}/>
+                            <RxCross2  size={30} color={'#091836'} style={{cursor: 'pointer'}}
+                            onClick={() => setIsOpen(false)}/>
                     </button>
                     <ul>
                         <li>Electives</li>

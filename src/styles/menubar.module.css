@@ -31,7 +31,7 @@
 }
 
 .crossBtn {
-    @apply w-full flex justify-center items-center;
+    @apply w-full flex justify-center items-center cursor-default;
     border-bottom: #0918369a 1px solid;
 }
 
