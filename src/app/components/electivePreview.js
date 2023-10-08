@@ -17,7 +17,7 @@ const ElectivePreview = ({elective}) => {
                     </div>
                 </div>
 
-                <div>
+                <div className='px-3'>
                     <label>Students Enrolled</label>
                     <div className="px-10 text-xl"> {elective.count} </div>
                 </div>
