@@ -10,9 +10,9 @@
 }
 
 .electivesContainer {
-    min-width: 400px;
+    min-width: 300px;
     @apply flex flex-col h-screen gap-3
-    items-center justify-start mt-32 w-11/12 md:w-3/5 lg:w-1/2 mx-4;
+    items-center justify-start mt-32 w-full md:w-3/5 lg:w-1/2 mx-4;
 }
 
 .elective {
