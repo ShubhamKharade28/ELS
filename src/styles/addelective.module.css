@@ -1,0 +1,71 @@
+
+.addElectiveContainer {
+    --medium-color: #3f4d69;
+    --dark-color: #091836;
+    --light-color: #d7dfef;
+    --input-bg-color: #252A57;
+    --input-font-color: #dee2eb;
+
+    color: var(--input-font-color);
+    @apply flex flex-col gap-8 w-full px-5 md:w-2/3 lg:w-1/2 overflow-y-scroll
+    justify-start items-start h-screen pt-24;
+}
+
+.addElectiveContainer::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+}   
+
+.addElectiveContainer input {
+    @apply outline-none px-5 py-2 md:py-3 rounded w-full ;
+    background: var(--input-bg-color);
+    color: #dee2eb;
+}
+
+.addElectiveContainer label {
+    @apply text-lg font-semibold;
+}
+
+.addElectiveContainer button {
+    background: var(--light-color);
+    color: var(--dark-color);
+    letter-spacing: 0.4px;
+    @apply text-lg py-2 lg:py-3 px-6 lg:px-8 mt-3 rounded-lg font-semibold mx-auto;
+}
+
+.addElectiveContainer button:hover {
+    box-shadow: 4px 4px 20px var(--medium-color);
+    scale:1.03;
+}
+
+.subjectsContainer,.studentsContainer {
+    @apply flex flex-col gap-2 w-full;
+}
+
+.subjectsContainer button, .studentsContainer button {
+    @apply text-base px-5 py-2 md:py-3 mt-0;
+}
+
+.subjectsContainer input {
+    @apply w-full text-base ;
+}
+
+.subjectInputContainer, .studentInputContainer {
+    @apply flex justify-around items-center gap-2;
+}
+
+.subjectsAdded li{
+    @apply flex justify-start gap-5;
+}
+
+.studentInputContainer input {
+    @apply w-full px-3 md:px-4 lg:px-5;
+}
+
+.studentsAdded li {
+    @apply flex justify-start items-center gap-4;
+}
+
+.subjectsAdded li, .studentsAdded li {
+    @apply px-1 md:px-2 lg:px-4;
+}

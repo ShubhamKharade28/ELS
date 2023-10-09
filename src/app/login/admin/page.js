@@ -10,6 +10,7 @@ const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
+    const [loginBtnText, setLoginBtnText] = useState('Login');
     const router = useRouter();
 
     const loginHandler = async (e) => {
@@ -36,20 +37,23 @@ const AdminLogin = () => {
         res = await res.json();
 
         setLoading(false);
-
-        if(res.error){
-            alert(error);
-        }else if(!res.correctPassword){
-            alert('Incorrect password');
-        }else{
-            alert('Successful');
-            localStorage.setItem('admin', {
-                email: email,
-                password: password,
-            })
-            setEmail('');
-            setPassword('');
-            router.push('/dashboard/admin');
+        try{
+            if(res.error){
+                alert(error);
+            }else if(!res.correctPassword){
+                alert('Incorrect password');
+            }else{
+                localStorage.setItem('admin', {
+                    email: email,
+                    password: password,
+                })
+                setEmail('');
+                setPassword('');
+                setLoginBtnText('Login Successful!');
+                router.push('/dashboard/admin');
+            }
+        }catch(err){
+            alert('Unknown error occurred, try again...');
         }
     }
 
@@ -66,7 +70,7 @@ const AdminLogin = () => {
                     onChange={(e) =>setPassword(e.target.value)}/>
                 <button onClick={(e) => loginHandler(e)}>
                 {
-                    loading ? <Loader /> : "Login"
+                    loading ? <Loader /> : <span>{loginBtnText}</span>
                 }
                 </button>
             </form>

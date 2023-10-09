@@ -9,6 +9,7 @@
     height: 95%;
     min-width: 180px;
     max-width: 250px;
+    box-shadow: 6px 2px 30px #050d1f;
     @apply flex flex-col items-center
     justify-around w-1/2 md:w-1/6 overflow-hidden rounded-lg py-4 px-2;
 }
@@ -24,6 +25,11 @@
     z-index: 10;
     background: #D7DFEF;
     @apply py-3 px-5 text-lg rounded-lg;
+}
+
+.hamburgerBtn:hover {
+    box-shadow: 4px 4px 20px #3f4d69;
+    scale:1.03;
 }
 
 .menus {
@@ -48,6 +54,16 @@
     @apply flex flex-col h-72 items-center justify-start text-lg gap-3;
 }
 
+.menus ul li:hover {
+    @apply text-lg font-bold;
+}
+
 .logoutBtn {
+    transition: all ease 0.3s;
     @apply flex w-full gap-3 justify-center items-center py-4;
+}
+
+.logoutBtn:hover {
+    letter-spacing: 1px;
+    @apply font-bold text-lg ;
 }

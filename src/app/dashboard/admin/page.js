@@ -24,7 +24,7 @@ const AdminDashboard = () => {
                 {
                     Electives.map((elective) => {
                         return (
-                            <ElectivePreview elective={elective} />
+                            <ElectivePreview elective={elective} key={elective.name}/>
                         )
                     })
                 }

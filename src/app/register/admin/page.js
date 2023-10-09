@@ -12,6 +12,7 @@ const AdminRegister = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [registerBtnText, setRegisterBtnText] = useState('Register');
     const router = useRouter();
 
     const validPass = () => {
@@ -78,19 +79,22 @@ const AdminRegister = () => {
         res = await res.json();
 
         setLoading(false);
-
-        if(res.error){
-            alert(res.error);
-        }else{
-            alert('Successful');
-            localStorage.setItem('admin', {
-                email: email,
-                name: name,
-            });
-            setName('');
-            setEmail('');
-            setPassword('');
-            router.push('/dashboard/admin');
+        try {
+            if(res.error){
+                alert(res.error);
+            }else{
+                localStorage.setItem('admin', {
+                    email: email,
+                    name: name,
+                });
+                setName('');
+                setEmail('');
+                setPassword('');
+                setRegisterBtnText('Registered Successfully!')
+                router.push('/dashboard/admin');
+            }
+        } catch (error) {
+            alert('Unknown error occurred, try again...');
         }
     }
 
@@ -111,12 +115,12 @@ const AdminRegister = () => {
                 <input  onChange={(e) => setEmail(e.target.value)} 
                  type='text' placeholder='Enter your email' value={email}/>
                 <input  onChange={(e) => setName(e.target.value)}
-                 type='text' placeholder='Enter your name' value={email}/>
+                 type='text' placeholder='Enter your name' value={name}/>
                 <input  onChange={(e) => setPassword(e.target.value)}
                  type='password' placeholder='Create a password' value={password}/>
                 <button onClick={registerHandler}>
                 {
-                    loading ? <Loader /> : "Register"
+                    loading ? <Loader /> : <span>{registerBtnText}</span>
                 }
                 </button>
             </form>

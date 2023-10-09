@@ -6,12 +6,12 @@
     --light-color: #d7dfef;
 
     background: var(--dark-color);
-    @apply flex flex-col justify-center items-center min-h-screen w-screen overflow-hidden;
+    @apply flex flex-col justify-center items-center min-h-screen w-screen ;
 }
 
 .electivesContainer {
     @apply flex flex-col h-screen gap-3
-    items-center justify-start mt-32 w-full md:w-3/5 lg:w-1/2;
+    items-center justify-start mt-32 w-full md:w-3/5;
 }
 
 .elective {

@@ -19,7 +19,6 @@
 }
 
 .container form input:focus {
-    color:#dee2eb;
     scale: 1.03;
 }
 

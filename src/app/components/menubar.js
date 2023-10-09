@@ -2,9 +2,11 @@
 import styles from '@/styles/menubar.module.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross2 } from 'react-icons/rx';
-import { BiLogOut, BiPointer } from 'react-icons/bi';
+import { BiLogOut } from 'react-icons/bi';
 import { motion } from 'framer-motion';
+
 import { useState } from 'react';
+import Link from 'next/link';
 
 const sidebarVariants = {
     open: {
@@ -19,7 +21,7 @@ const sidebarVariants = {
 
 const btnVariants = {
     open: {
-        opacity: 0,
+        opacity: 0.4,
     },
     closed: {
         opacity: 1
@@ -56,8 +58,12 @@ const Menubar = () => {
                             onClick={() => setIsOpen(false)}/>
                     </button>
                     <ul>
-                        <li>Electives</li>
-                        <li>Add elective</li>
+                        <li>
+                            <Link href="/dashboard/admin">Courses</Link>
+                        </li>
+                        <li>
+                            <Link href="/dashboard/admin/add-elective">Add Course</Link>
+                        </li>
                     </ul>
                     <div className={styles.profile}>
                         <h6>admin name</h6>
