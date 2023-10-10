@@ -5,7 +5,7 @@ import Elective from "@/utils/models/elective";
 export async function POST(req){
     try{
         req = await req.json();
-        if(!req.name || !req.admin_name || !req.subjects){
+        if(!req.title || !req.admin_name || !req.subjects){
             return NextResponse.json({
                 error: 'INVALID_CREDENTIALS'
             }, { status: 422 });
@@ -31,9 +31,10 @@ export async function POST(req){
         });
 
         let newElective = {
-            name: req.name,
+            name: req.title,
             admin_name: req.admin_name,
             subjects: subjectList,
+            students: req.students,
         };
         
         let res = await Elective.insertOne(newElective);

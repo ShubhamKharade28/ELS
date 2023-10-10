@@ -39,7 +39,7 @@
 }
 
 .subjectsContainer,.studentsContainer {
-    @apply flex flex-col gap-2 w-full;
+    @apply flex flex-col gap-4 w-full;
 }
 
 .subjectsContainer button, .studentsContainer button {
