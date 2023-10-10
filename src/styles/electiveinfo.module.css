@@ -1,0 +1,54 @@
+
+.electiveContainer {
+    --medium-color: #233457;
+    --dark-color: #091836;
+    --light-color: #d7dfef;
+    --input-bg-color: #252A57;
+    --input-font-color: #dee2eb;
+
+    color:var(--input-font-color);
+    @apply flex flex-col justify-start items-start w-full md:w-3/4 lg:w-1/2
+    h-screen pt-24 px-8 md:px-10 gap-10;
+}
+
+.electiveHeading {
+    @apply flex w-full justify-between items-end;
+}
+
+.electiveHeading h1 {
+    @apply font-bold text-4xl md:text-5xl;
+}
+
+.courses {
+    @apply w-full;
+}
+
+.courseContainer {
+    background: var(--medium-color);
+    color: #e1e4eb;
+    @apply flex flex-col gap-4 w-full p-4 lg:p-6 rounded-md;
+}
+
+.courseHeading {
+    @apply flex flex-col justify-start w-full gap-2;
+}
+
+.courseHeading h4 {
+    @apply font-semibold;
+}
+
+.courseHeading label {
+    @apply text-sm;
+}
+
+.courseContainer ul {
+    @apply flex flex-col gap-2 justify-start w-full;
+}
+
+.courseContainer ul li {
+    @apply flex justify-start gap-4 w-full;
+}
+
+.stdname {
+    @apply w-52 md:w-60 lg:w-72;
+}

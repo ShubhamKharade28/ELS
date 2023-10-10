@@ -43,7 +43,7 @@ const Menubar = () => {
                 <GiHamburgerMenu size={20} color={'#091836'} />
             </motion.button>
             <motion.div className={styles.menuContainer}
-                initial={"closed"}
+                initial={"open"}
                 variants={sidebarVariants}
                 animate={isOpen ? "open":"closed"}
                 transition={{

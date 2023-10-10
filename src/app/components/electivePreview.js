@@ -1,9 +1,12 @@
+
+import Link from 'next/link';
+
 import styles from '@/styles/dashboard.module.css';
 
 const ElectivePreview = ({elective}) => {
 
     return (
-        <div className={styles.elective} key={elective.name}>
+        <Link className={styles.elective} key={elective.name} href="/dashboard/admin/elective/id">
             <h3>{elective.name}</h3>
             <div className={styles.electiveGrid}>
                 <div>
@@ -22,7 +25,7 @@ const ElectivePreview = ({elective}) => {
                     <div className="px-10 text-xl"> {elective.count} </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
