@@ -63,9 +63,11 @@ const AddElective = () => {
             return;
         }
 
+        const adminId = localStorage.getItem('adminId');
+
         const data = {
-            name: electiveTitle,
-            admin_name: 'admin7',
+            title: electiveTitle,
+            adminId: adminId,
             subjects: subjects,
             students: students,
         };
@@ -86,7 +88,7 @@ const AddElective = () => {
             if(res.error){
                 alert(res.error);
             }
-            else if(!res.acknoledged){
+            else if(!res.acknowledged){
                 alert('Failed to submit, try again!')
             }
             else{

@@ -7,27 +7,36 @@ import ElectivePreview from '@/app/components/electivePreview';
 
 const AdminDashboard = () => {
 
-    const name = localStorage.getItem('user');
-    const email = localStorage.getItem('email');
     const [electives, setElectives] = useState([]);
 
     useEffect(() => {
         
         const getData = async () => {
             try{
-                let res = await fetch(`/api/electives/getByUser/${name}`);
+                const adminId = localStorage.getItem('adminId');
+                let res = await fetch(`/api/electives/getByUser/${adminId}`);
                 res = await res.json();
 
                 if(res.error){
-                    alert(res.error);
+                    console.warn(error);
                 }else{
                     setElectives(res);
                 }
             }catch(error){
-                alert('Unknown error while fetching electives data');
+                console.warn(error);
             }
         }
+        getData();
     },[])
+
+    if(electives.length === 0){
+        return (
+            <div className={styles.dashboardContainer}>
+                <Menubar />
+                <h1>No electives added</h1>
+            </div>
+        )
+    }
 
 
     return (
@@ -37,7 +46,7 @@ const AdminDashboard = () => {
                 {
                     electives.map((elective) => {
                         return (
-                            <ElectivePreview elective={elective} key={elective.name}/>
+                            <ElectivePreview elective={elective} key={elective.title}/>
                         )
                     })
                 }

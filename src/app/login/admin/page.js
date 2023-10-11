@@ -43,10 +43,9 @@ const AdminLogin = () => {
             }else if(!res.correctPassword){
                 alert('Incorrect password');
             }else{
-                localStorage.setItem('admin', {
-                    email: email,
-                    password: password,
-                })
+                localStorage.setItem('adminId', res.adminId);
+                localStorage.setItem('adminEmail', email);
+                localStorage.setItem('adminName', req.adminName);
                 setEmail('');
                 setPassword('');
                 setLoginBtnText('Login Successful!');

@@ -1,11 +1,36 @@
+"use client";
 
 import dashboardStyles from '@/styles/dashboard.module.css';
 import styles from '@/styles/electiveinfo.module.css';
 import Menubar from '@/app/components/menubar';
+import { useEffect, useState } from 'react';
 
 const ElectiveInfo = ({params}) => {
 
     const id = params.id;
+    const [title, setTitle] = useState('-ele-title-');
+    const [count, setCount] = useState(0);
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            let res = await fetch(`/api/electives/getById/${id}`);
+            res = await res.json();
+            try {
+                if(res.error){
+                    console.log(res.error);
+                }else{
+                    setTitle(res.title);
+                    setCount(res.count);
+                    setCourses(res.subjects);
+                }
+            }catch(error){
+                alert("Unknown error occurred!");
+                console.log(error);
+            }
+        }
+        getData();
+    }, [])
 
     return (
 
@@ -13,33 +38,36 @@ const ElectiveInfo = ({params}) => {
         <Menubar />
         <div className={styles.electiveContainer}>
             <div className={styles.electiveHeading}>
-                <h1>Elective III</h1>
-                <h5>Total Enrolled: 30</h5>
+                <h1>{title}</h1>
+                <h5>Total Enrolled: {count}</h5>
             </div>
             <div className={styles.courses}>
-                <div className={styles.courseContainer}>
-                    <div className={styles.courseHeading}>
-                        <h4>Programming with Java</h4>
-                        <label>Enrolled: 12</label>
-                    </div>
-                    <ul className={styles.studentsContainer}>
-                        <li>
-                            <span>1.</span>
-                            <span className={styles.stdname}>Shubham kharade</span>
-                            <span>2130331246008</span>
-                        </li>
-                        <li>
-                            <span>2.</span>
-                            <span className={styles.stdname}>Sumit Kadam</span>
-                            <span>2130331246012</span>
-                        </li>
-                        <li>
-                            <span>3.</span>
-                            <span className={styles.stdname}>Dipak Dakle</span>
-                            <span>2130331246058</span>
-                        </li>
-                    </ul>
-                </div>
+            {
+                courses.map((course) => {
+
+                    return (
+                    <div className={styles.courseContainer}>
+                        <div className={styles.courseHeading}>
+                            <h4>{course.name}</h4>
+                            <label>Enrolled: {course.count}</label>
+                        </div>
+                        <ul className={styles.studentsContainer}>
+                        {
+                            course.students.map((student,index) => {
+                                return (
+                                    <li>
+                                        <span>{index+1}.</span>
+                                        <span className={styles.stdname}>{student.name}</span>
+                                        <span>{student.prn}</span>
+                                    </li>
+                                )
+                            })
+                        }
+                        </ul>
+                    </div>);
+                })
+            }
+                
             </div>
         </div>
     </div>

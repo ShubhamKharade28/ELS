@@ -32,9 +32,12 @@ export async function POST(req){
             password: hashedPass,
         };
 
-        await Admin.insertOne(newAdmin);
+        const res = await Admin.insertOne(newAdmin);
         client.close();
-        return NextResponse.json(newAdmin);
+        return NextResponse.json({
+            acknoledged: res.acknowledged,
+            adminId: res.insertedId,
+        });
     }
     catch(error){
         client.close();

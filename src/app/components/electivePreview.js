@@ -6,8 +6,8 @@ import styles from '@/styles/dashboard.module.css';
 const ElectivePreview = ({elective}) => {
 
     return (
-        <Link className={styles.elective} key={elective.name} href="/dashboard/admin/elective/id">
-            <h3>{elective.name}</h3>
+        <Link className={styles.elective} key={elective.title} href={`/dashboard/admin/elective/${elective._id}`}>
+            <h3>{elective.title}</h3>
             <div className={styles.electiveGrid}>
                 <div>
                     <label>Subjects</label>

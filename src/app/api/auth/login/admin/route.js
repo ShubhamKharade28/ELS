@@ -16,6 +16,7 @@ export async function POST(req){
 
         let admin = await Admin.findOne({ email: req.email});
         if(!admin){
+            client.close();
             return NextResponse.json({
                 error: 'ADMIN_NOT_FOUND'
             }, { status:404 });
@@ -23,20 +24,22 @@ export async function POST(req){
         
         let result = await bcryptjs.compare(req.password, admin.password);
         if(result){
+            client.close();
             return NextResponse.json({
                 correctPassword: true,
-                admin: {
-                    name: admin.name,
-                    email: admin.email,
-                }
+                adminId: admin._id,
+                adminName: admin.name,
+                adminEmail: admin.email,
             });
         }
 
+        client.close();
         return NextResponse.json({
             correctPassword: false,
         });
     } catch (error) {
         console.log(error);
+        client.close();
         return NextResponse.json({
             error: 'INTERNAL_SERVER_ERROR',
         }, { status: 500 });

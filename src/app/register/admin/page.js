@@ -83,10 +83,9 @@ const AdminRegister = () => {
             if(res.error){
                 alert(res.error);
             }else{
-                localStorage.setItem('admin', {
-                    email: email,
-                    name: name,
-                });
+                localStorage.setItem('adminId', res.adminId);
+                localStorage.setItem('adminEmail', email);
+                localStorage.setItem('adminName', res.adminName);
                 setName('');
                 setEmail('');
                 setPassword('');

@@ -5,7 +5,8 @@ import Elective from "@/utils/models/elective";
 export async function POST(req){
     try{
         req = await req.json();
-        if(!req.title || !req.admin_name || !req.subjects){
+        console.log(req);
+        if(!req.title || !req.adminId || !req.subjects){
             return NextResponse.json({
                 error: 'INVALID_CREDENTIALS'
             }, { status: 422 });
@@ -16,8 +17,6 @@ export async function POST(req){
                 error: 'EMPTY_SUBJECT_LIST',
             }, { status: 422 });
         }
-
-        await client.connect();
 
         const subjects = req.subjects;
         let subjectList = [];
@@ -31,19 +30,22 @@ export async function POST(req){
         });
 
         let newElective = {
-            name: req.title,
-            admin_name: req.admin_name,
+            title: req.title,
+            adminId: req.adminId,
             subjects: subjectList,
             students: req.students,
             count: 0,
         };
+
+        await client.connect();
         
         let res = await Elective.insertOne(newElective);
-
+        client.close();
         return NextResponse.json(res);
 
     }catch(error){
         console.log(error);
+        client.close();
         return NextResponse.json({
             error: 'INTERNAL_SERVER_ERROR'
         }, { status: 404});
