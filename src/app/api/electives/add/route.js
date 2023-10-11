@@ -35,6 +35,7 @@ export async function POST(req){
             admin_name: req.admin_name,
             subjects: subjectList,
             students: req.students,
+            count: 0,
         };
         
         let res = await Elective.insertOne(newElective);

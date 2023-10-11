@@ -14,7 +14,7 @@ const ElectivePreview = ({elective}) => {
                     <div className={styles.subjects}>
                     {
                         elective.subjects.map((subject,index) => {
-                            return <span key={subject}>{index+1} {subject}</span>
+                            return <span key={subject}>{index+1}. {subject.name}</span>
                         })
                     }
                     </div>

@@ -6,8 +6,11 @@ import dashboardStyles from '@/styles/dashboard.module.css';
 import styles from '@/styles/addelective.module.css';
 import Menubar from '@/app/components/menubar';
 import Loader from '@/app/components/loader';
+import { useRouter } from 'next/navigation';
 
 const AddElective = () => {
+
+    const router = useRouter();
 
     const [electiveTitle, setElectiveTitle] = useState('');
     const [subjects, setSubjects] = useState([]);
@@ -61,7 +64,7 @@ const AddElective = () => {
         }
 
         const data = {
-            title: electiveTitle,
+            name: electiveTitle,
             admin_name: 'admin7',
             subjects: subjects,
             students: students,
@@ -82,9 +85,14 @@ const AddElective = () => {
 
             if(res.error){
                 alert(res.error);
-            }else{
+            }
+            else if(!res.acknoledged){
+                alert('Failed to submit, try again!')
+            }
+            else{
                 console.log(res);
                 setBtnVal('Added successfully');
+                router.push(`/dashboard/admin/elective/${res.insertedId}`);
             }
             setLoading(false);
         }
