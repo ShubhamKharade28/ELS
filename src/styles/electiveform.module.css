@@ -1,0 +1,59 @@
+
+.electiveForm {
+    --medium-color: #3f4d69;
+    --dark-color: #091836;
+    --light-color: #e5e9f1;
+    --font-color:  #dee2eb;
+
+    color: white;
+    background: var(--dark-color);
+    @apply gap-7 p-10
+    flex flex-col justify-center items-start min-h-screen w-screen  md:w-1/2 lg:w-2/5;
+}
+
+.electiveForm h1 {
+    @apply py-5;
+    border-bottom: 1px solid white;
+}
+
+.electiveForm input {
+    background: #252A57;
+    color: var(--font-color);
+    letter-spacing: 1px;
+    @apply outline-none px-5 py-2 md:py-3 rounded w-full;
+}
+
+.options {
+    @apply flex flex-col gap-2 items-start; 
+}
+
+.enabled, .disabled {
+    min-width: 8rem;
+    background: var(--medium-color);
+    @apply rounded  cursor-pointer w-full
+    flex justify-center gap-6 px-5 py-2 text-lg;
+}
+
+.enabled[data-selected="true"] {
+    background: var(--light-color);
+    color:#091836;
+}
+
+.disabled {
+    @apply items-end;
+}
+
+.electiveForm button {
+    background: var(--light-color);
+    color: var(--dark-color);
+    box-shadow: 2px 2px 10px #212e49;
+    letter-spacing: 1px;
+    @apply text-lg py-3 px-6 mt-5
+     lg:px-8 rounded-lg w-min text-center font-semibold;
+}
+
+.electiveForm button:hover {
+    scale:1.05;
+    box-shadow: 4px 4px 20px #3f4d69;
+    @apply font-bold;
+}

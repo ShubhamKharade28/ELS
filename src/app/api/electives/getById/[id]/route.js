@@ -26,7 +26,11 @@ export async function GET(req, {params}){
         }
 
         
-        return NextResponse.json(elective);
+        return NextResponse.json({
+            title: elective.title,
+            subjects: elective.subjects,
+            count: elective.count,
+        });
     }catch(error){
         console.log(error);
         return NextResponse.json({

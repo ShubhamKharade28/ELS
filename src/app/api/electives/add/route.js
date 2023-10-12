@@ -29,12 +29,15 @@ export async function POST(req){
             });
         });
 
+        let maxLimit = Math.floor(req.students.length / subjects.length) + 1;
+
         let newElective = {
             title: req.title,
             adminId: req.adminId,
             subjects: subjectList,
             students: req.students,
             count: 0,
+            maxLimit: maxLimit,
         };
 
         await client.connect();
