@@ -13,7 +13,7 @@ const HomeBtn = () => {
                     duration: 1,
                     type:"spring"
                 }}
-                href='/login'
+                href='/'
                 className={styles.homebtn}
             >
                 &lArr;

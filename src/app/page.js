@@ -1,38 +1,31 @@
 "use client";
-import Link from 'next/link';
-import styles from '@/styles/home.module.css';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+import styles from '@/styles/auth.module.css';
+import { motion } from "framer-motion";
 
 const Home = () => {
-
-  //if(!user) then push to page login 
-  //if usertype = student then push to student dashboard
-  //else if usertype = admin then push to admin dashboard
-  
-  
-  return (
-    <main className="container">
-      <div className={styles.container}>
-      <motion.div
-        initial={{
-          y:-100,
-          opacity:0.7
-        }}
-        animate={{
-          y:0,
-          opacity:1
-        }}
-        transition={{
-          duration:0.7
-          // type:"spring"
-        }}
-        className={styles.container}>
-        <h2>Choose your electives unambiguously</h2>
-        <Link href="/login">Go to signin &rArr;</Link>
-      </motion.div>
-      </div>
-    </main>
-  )
-} 
+    return (
+        <motion.div className={styles.container}
+            initial={{
+                y:-50,
+                opacity: 0.7
+            }}
+            animate={{
+                y:0,
+                opacity: 1
+            }}
+            transition={{
+                duration:0.7,
+            }}
+        >
+            <h1>Login to continue</h1>
+            <div className={styles.links}>
+                <Link href="/login">Admin Login &rArr;</Link>
+                <Link href="/register">Admin Register &rArr;</Link>
+                <Link href="/student">Fill Elective Form &rArr;</Link>
+            </div>
+        </motion.div>
+    )
+}
 
 export default Home;

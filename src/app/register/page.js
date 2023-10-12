@@ -90,7 +90,7 @@ const AdminRegister = () => {
                 setEmail('');
                 setPassword('');
                 setRegisterBtnText('Registered Successfully!')
-                router.push('/dashboard/admin');
+                router.push('/admin');
             }
         } catch (error) {
             alert('Unknown error occurred, try again...');

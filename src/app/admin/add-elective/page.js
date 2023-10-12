@@ -94,7 +94,7 @@ const AddElective = () => {
             else{
                 console.log(res);
                 setBtnVal('Added successfully');
-                router.push(`/dashboard/admin/elective/${res.insertedId}`);
+                router.push(`/admin/elective/${res.insertedId}`);
             }
             setLoading(false);
         }
