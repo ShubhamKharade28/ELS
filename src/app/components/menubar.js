@@ -43,7 +43,7 @@ const Menubar = () => {
                 <GiHamburgerMenu size={20} color={'#091836'} />
             </motion.button>
             <motion.div className={styles.menuContainer}
-                initial={"open"}
+                initial={"closed"}
                 variants={sidebarVariants}
                 animate={isOpen ? "open":"closed"}
                 transition={{
@@ -59,10 +59,10 @@ const Menubar = () => {
                     </button>
                     <ul>
                         <li>
-                            <Link href="/dashboard/admin">Courses</Link>
+                            <Link href="/admin">Courses</Link>
                         </li>
                         <li>
-                            <Link href="/dashboard/admin/add-elective">Add Course</Link>
+                            <Link href="/admin/add-elective">Add Course</Link>
                         </li>
                     </ul>
                     <div className={styles.profile}>

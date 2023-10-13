@@ -10,32 +10,51 @@ export async function POST(req){
         const id = req.electiveId;
         
         await client.connect();
-        let studentExist = await Elective.find({
+        let studentExist = await Elective.findOne({
             _id: new ObjectId(id),
-            'students': [
-                {
+            'students': {
+                $elemMatch: {
                     name: {
                         $regex: req.studentName, $options: 'i'
                     },
                     prn: req.studentPrn,
                 }
-            ]
+            }
         });
 
-        studentExist = await studentExist.toArray();
 
-        console.log(studentExist);
-
-        if(studentExist.length == 0){
+        if(!studentExist){
             client.close();
             return NextResponse.json({
-                error: 'Invalid credentials'
+                error: 'Invalid credentials',
+                success: false,
             })
         }
 
         const newStudent = {
             name: req.studentName,
             prn: req.studentPrn,
+        }
+
+        let studentEnrolled = await Elective.findOne({
+            _id: new ObjectId(id),
+            'subjects': {
+                $elemMatch: {
+                    'students': {
+                        $elemMatch: {
+                            prn: req.studentPrn,
+                        }
+                    }
+                }
+            }
+        });
+
+        if(studentEnrolled){
+            client.close();
+            return NextResponse.json({
+                success: false,
+                error: 'Student already enrolled'
+            });
         }
 
         const filter = {
@@ -57,6 +76,9 @@ export async function POST(req){
             },
             $inc: {
                 "subjects.$[subject].count" : 1
+            },
+            $inc: {
+                "count": 1
             }
         };
 
@@ -64,15 +86,26 @@ export async function POST(req){
             filter,
             update,
             options,
-        )
+        );
 
-        client.close();
+        
+        if(!updateElective){
+            client.close();
+            return NextResponse.json({
+                error: 'Uknown error while submitting response',
+                success: false,
+            })
+        }
 
-        return NextResponse.json(updateElective);
+
+        return NextResponse.json({
+            success: true,
+        });
     }catch(error){
         console.log(error);
         return NextResponse.json({
-            error: 'Internal server error'
+            error: 'Internal server error',
+            success: false,
         })
     }
 }

@@ -1,0 +1,15 @@
+
+.bigloaderContainer {
+    @apply flex justify-center items-center p-4;
+}
+
+.bigloader {
+    height: min(30vh,30vw);
+    width: min(30vh,30vw);
+    border-top-color: #d7dfef;
+    border-left-color: #091836;
+    border-bottom-color:  #091836;
+    border-right-color:  #091836;
+    border-width: 20px;
+    border-radius: 50%;
+}

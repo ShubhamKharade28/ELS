@@ -3,6 +3,7 @@
 import dashboardStyles from '@/styles/dashboard.module.css';
 import styles from '@/styles/electiveinfo.module.css';
 import Menubar from '@/app/components/menubar';
+import BigLoader from '@/app/components/bigloader';
 import { useEffect, useState } from 'react';
 
 const ElectiveInfo = ({params}) => {
@@ -11,6 +12,7 @@ const ElectiveInfo = ({params}) => {
     const [title, setTitle] = useState('-ele-title-');
     const [count, setCount] = useState(0);
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
@@ -28,12 +30,21 @@ const ElectiveInfo = ({params}) => {
                 alert("Unknown error occurred!");
                 console.log(error);
             }
+            setLoading(false);
         }
         getData();
     }, [])
 
-    return (
+    if(loading){
+        return (
+            <div className={styles.dashboardContainer}>
+                <Menubar />
+                <BigLoader />
+            </div>
+        );
+    }
 
+    return (
     <div className={dashboardStyles.dashboardContainer}>
         <Menubar />
         <div className={styles.electiveContainer}>

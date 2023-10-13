@@ -10,13 +10,11 @@ export async function GET(req, {params}){
 
         await client.connect();
         const id = params.id;
-        console.log('electiveId', id);
 
         let elective = await Elective.findOne({
             _id: new ObjectId(id),
         });
 
-        console.log('elective',elective);
 
         if(!elective){
             client.close();
@@ -25,11 +23,11 @@ export async function GET(req, {params}){
             });
         }
 
-        
         return NextResponse.json({
             title: elective.title,
             subjects: elective.subjects,
             count: elective.count,
+            maxLimit: elective.maxLimit,
         });
     }catch(error){
         console.log(error);

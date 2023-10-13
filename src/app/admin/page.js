@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import styles from '@/styles/dashboard.module.css';
 import Menubar from "@/app/components/menubar";
 import ElectivePreview from '@/app/components/electivePreview';
+import BigLoader from '../components/bigloader';
 
 const AdminDashboard = () => {
 
     const [electives, setElectives] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         
@@ -25,9 +27,19 @@ const AdminDashboard = () => {
             }catch(error){
                 console.warn(error);
             }
+            setLoading(false);
         }
         getData();
     },[])
+
+    if(loading){
+        return (
+            <div className={styles.dashboardContainer}>
+                <Menubar />
+                <BigLoader />
+            </div>
+        );
+    }
 
     if(electives.length === 0){
         return (
@@ -44,9 +56,9 @@ const AdminDashboard = () => {
             <Menubar />
             <div className={styles.electivesContainer}>
                 {
-                    electives.map((elective) => {
+                    electives.map((elective,index) => {
                         return (
-                            <ElectivePreview elective={elective} key={elective.title}/>
+                            <ElectivePreview elective={elective} key={index}/>
                         )
                     })
                 }

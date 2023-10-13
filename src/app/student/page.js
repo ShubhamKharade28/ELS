@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styles from '@/styles/student.module.css';
 
 const StudentDashboard = () => {
-    const [electiveId, setElectiveId] = useState('fakeid');
+    const [electiveId, setElectiveId] = useState('');
     
     return (
         <form className={styles.dashboardContainer}>

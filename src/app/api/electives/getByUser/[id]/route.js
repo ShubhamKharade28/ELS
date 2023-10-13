@@ -12,8 +12,6 @@ export async function GET(request, {params}){
             adminId
         });
         electives = await electives.toArray();
-        
-        console.log(electives);
 
         await client.close();
         return NextResponse.json(electives);
