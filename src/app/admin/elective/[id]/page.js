@@ -57,7 +57,7 @@ const ElectiveInfo = ({params}) => {
                 courses.map((course) => {
 
                     return (
-                    <div className={styles.courseContainer}>
+                    <div className={styles.courseContainer} key={course.name}>
                         <div className={styles.courseHeading}>
                             <h4>{course.name}</h4>
                             <label>Enrolled: {course.count}</label>
@@ -66,7 +66,7 @@ const ElectiveInfo = ({params}) => {
                         {
                             course.students.map((student,index) => {
                                 return (
-                                    <li>
+                                    <li key={index}>
                                         <span>{index+1}.</span>
                                         <span className={styles.stdname}>{student.name}</span>
                                         <span>{student.prn}</span>

@@ -30,7 +30,7 @@ export async function GET(req, {params}){
             maxLimit: elective.maxLimit,
         });
     }catch(error){
-        console.log(error);
+        // console.log(error);
         return NextResponse.json({
             error: 'Internal Server Error',
         });

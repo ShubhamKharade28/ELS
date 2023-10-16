@@ -45,13 +45,14 @@ const AdminLogin = () => {
             }else{
                 localStorage.setItem('adminId', res.adminId);
                 localStorage.setItem('adminEmail', email);
-                localStorage.setItem('adminName', req.adminName);
+                localStorage.setItem('adminName', res.adminName);
                 setEmail('');
                 setPassword('');
                 setLoginBtnText('Login Successful!');
                 router.push('/admin');
             }
         }catch(err){
+            console.log(err);
             alert('Unknown error occurred, try again...');
         }
     }

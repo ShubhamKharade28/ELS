@@ -2,7 +2,7 @@
 import styles from '@/styles/homebtn.module.css';
 import { motion } from 'framer-motion';
 
-const HomeBtn = () => {
+const HomeBtn = ({path}) => {
     return (
         <motion.a
             initial={{x:-200}}
@@ -11,7 +11,7 @@ const HomeBtn = () => {
                 duration: 1,
                 type:"spring"
             }}
-            href='/'
+            href={path ? path: '/'}
             className={styles.homebtn}
         >
             &lArr;

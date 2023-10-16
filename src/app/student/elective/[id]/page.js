@@ -4,6 +4,7 @@ import styles from '@/styles/electiveform.module.css';
 import dashboardStyles from '@/styles/dashboard.module.css';
 import BigLoader from '@/app/components/bigloader';
 import Loader from '@/app/components/loader';
+import HomeBtn from '@/app/components/homebtn';
 
 const ElectiveForm = ({params}) => {
     const electiveId = params.id;
@@ -11,7 +12,6 @@ const ElectiveForm = ({params}) => {
     const [subjects, setSubjects] = useState([]);
     const [title, setTitle] = useState('');
     const [maxLimit, setMaxLimit] = useState(1);
-    const [count, setCount] = useState(0);
     const [courseSelected, setCourseSelected] = useState('');
 
 
@@ -33,7 +33,6 @@ const ElectiveForm = ({params}) => {
                     setTitle(res.title);
                     setSubjects(res.subjects);
                     setMaxLimit(res.maxLimit);
-                    setCount(res.count);
                 }
             }catch(err){
                 console.log(err);
@@ -91,13 +90,25 @@ const ElectiveForm = ({params}) => {
     if(loading){
         return (
             <div className={styles.dashboardContainer}>
+                <HomeBtn path="/student" />
                 <BigLoader />
             </div>
         );
     }
 
+    if(title === ''){
+        return (
+            <div className={styles.dashboardContainer}>
+                <HomeBtn path="/student" />
+                <h2 className={styles.notfound}>Elective-course not found !</h2>
+                <h4 className={styles.notfound}>Try checking elective-id</h4>
+            </div>
+        )
+    }
+
     return (
         <div className={dashboardStyles.dashboardContainer}>
+            <HomeBtn path="/student" />
         <form className={styles.electiveForm}>
             <h1>{title}</h1>
             <input type='text' placeholder="Enter name" value={name}

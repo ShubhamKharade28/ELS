@@ -5,8 +5,9 @@ import { RxCross2 } from 'react-icons/rx';
 import { BiLogOut } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const sidebarVariants = {
     open: {
@@ -31,6 +32,23 @@ const btnVariants = {
 const Menubar = () => {
     
     const [isOpen, setIsOpen] = useState(false);
+    const [name, setName] = useState('Admin');
+    const [email, setEmail] = useState('admin@email');
+    const router = useRouter();
+
+    useEffect(() => {
+        let nm = localStorage.getItem('adminName');
+        let eml = localStorage.getItem('adminEmail');
+        nm? setName(nm): 'Admin';
+        eml? setEmail(eml): 'admin@email'
+    }, [])
+
+    const logoutHandler = () => {
+        localStorage.removeItem('adminName');
+        localStorage.removeItem('adminEmail');
+        localStorage.removeItem('adminId');
+        router.push('/')
+    }
 
     return (
         <div>
@@ -66,9 +84,9 @@ const Menubar = () => {
                         </li>
                     </ul>
                     <div className={styles.profile}>
-                        <h6>admin name</h6>
-                        <span>admin@example.com</span>
-                            <button className={styles.logoutBtn}>
+                        <h6>{name}</h6>
+                        <span>{email}</span>
+                        <button className={styles.logoutBtn} onClick={logoutHandler}>
                             <BiLogOut/>
                             <span>Logout</span>
                         </button>

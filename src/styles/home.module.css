@@ -18,7 +18,7 @@
 }
 
 .container a {
-    @apply border-b-2 p-1 border-b-white text-lg bg-transparent; 
+    @apply border-b-2 p-1 border-b-white text-lg bg-transparent scale-100; 
 }
 
 .container a:hover {
