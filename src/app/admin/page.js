@@ -45,7 +45,7 @@ const AdminDashboard = () => {
         return (
             <div className={styles.dashboardContainer}>
                 <Menubar />
-                <h1>No electives added</h1>
+                <h1 className="text-white font-bold">No electives added</h1>
             </div>
         )
     }

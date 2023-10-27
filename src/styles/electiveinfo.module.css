@@ -52,3 +52,11 @@
 .stdname {
     @apply w-52 md:w-60 lg:w-72;
 }
+
+.copylink {
+    @apply flex gap-3 items-center font-semibold rounded py-2 px-5;
+}
+
+.copylink:hover {
+    background: var(--medium-color);
+}
