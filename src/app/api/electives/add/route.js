@@ -8,13 +8,13 @@ export async function POST(req){
         console.log(req);
         if(!req.title || !req.adminId || !req.subjects){
             return NextResponse.json({
-                error: 'INVALID_CREDENTIALS'
+                error: 'SERVER Error : Invalid credentials'
             }, { status: 422 });
         }
 
         if(req.subjects.length == 0){
             return NextResponse.json({
-                error: 'EMPTY_SUBJECT_LIST',
+                error: 'SERVER Error : Empty subject list',
             }, { status: 422 });
         }
 
@@ -25,11 +25,20 @@ export async function POST(req){
             subjectList.push({
                 name: subject,
                 count: 0,
-                students: []
             });
         });
 
-        let maxLimit = Math.floor(req.students.length / subjects.length) + 1;
+        let students = [{ name: String, prn: String, elective: String}];
+        req.students.forEach(element => {
+            let student = {
+                name: element.name,
+                prn: toString(element.prn),
+                elective: "-"
+            }
+            students.push(student);
+        });
+
+        let maxLimit = Math.floor(req.students.length / subjects.length) + (req.students.length % subjects.length);
 
         let newElective = {
             title: req.title,
@@ -50,7 +59,7 @@ export async function POST(req){
         console.log(error);
         client.close();
         return NextResponse.json({
-            error: 'INTERNAL_SERVER_ERROR'
+            error: 'Server Error : Network Connection Error',
         }, { status: 404});
     }
 }

@@ -15,7 +15,6 @@ export async function GET(req, {params}){
             _id: new ObjectId(id),
         });
 
-
         if(!elective){
             client.close();
             return NextResponse.json({
@@ -28,9 +27,12 @@ export async function GET(req, {params}){
             subjects: elective.subjects,
             count: elective.count,
             maxLimit: elective.maxLimit,
+            students: elective.students.map((student) => {
+                delete student._id;
+                return student;
+            }),
         });
     }catch(error){
-        // console.log(error);
         return NextResponse.json({
             error: 'Internal Server Error',
         });

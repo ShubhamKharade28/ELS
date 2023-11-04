@@ -69,3 +69,13 @@
 .subjectsAdded li, .studentsAdded li {
     @apply px-1 md:px-2 lg:px-4;
 }
+
+.uploadExcel {
+    @apply w-full flex flex-col gap-2;
+}
+
+.uploadExcel input::file-selector-button  {
+    background: var(--light-color);
+    color: var(--dark-color);
+    @apply rounded border-none cursor-pointer py-1 px-2 hover:opacity-90;
+}

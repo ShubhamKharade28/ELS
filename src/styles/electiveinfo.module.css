@@ -8,7 +8,16 @@
 
     color:var(--input-font-color);
     @apply flex flex-col justify-start items-start w-full md:w-3/4 lg:w-1/2
-    h-screen pt-24 px-8 md:px-10 gap-10;
+    h-screen pt-24 px-8 md:px-10 gap-10 overflow-y-scroll;
+}
+
+.electiveContainer::-webkit-scrollbar {
+    display: none;
+    background: var(--dark-color);
+}
+
+.electiveContainer::-webkit-scrollbar-button {
+    background: var(--dark-color);
 }
 
 .electiveHeading {
@@ -40,17 +49,8 @@
 .courseHeading label {
     @apply text-sm;
 }
-
-.courseContainer ul {
-    @apply flex flex-col gap-2 justify-start w-full;
-}
-
-.courseContainer ul li {
-    @apply flex justify-start gap-4 w-full;
-}
-
 .stdname {
-    @apply w-52 md:w-60 lg:w-72;
+    @apply w-52 md:w-60;
 }
 
 .copylink {
@@ -59,4 +59,37 @@
 
 .copylink:hover {
     background: var(--medium-color);
+}
+
+.studentsContainer {
+    background: var(--medium-color);
+    color: #e1e4eb;
+    @apply flex flex-col gap-4 w-full p-4 lg:p-6 rounded-md;
+}
+
+.studentsContainer header {
+    @apply flex justify-between items-end pb-4;
+}
+
+.studentsContainer h4 {
+    @apply font-semibold;
+}
+
+.studentsContainer table {
+    @apply text-center w-full;
+}
+
+.studentsContainer td, .studentsContainer th {
+    @apply py-1 px-2 text-start;
+}
+
+.toExcel {
+    background: var(--light-color);
+    color:var(--dark-color);
+    @apply flex gap-2 items-center py-1 px-2 rounded;
+}
+
+.toExcel:hover {
+    background: #f0f2f7;
+    box-shadow: 1px 1px 7px #dee2eb;
 }

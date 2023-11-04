@@ -96,7 +96,7 @@ const ElectiveForm = ({params}) => {
         );
     }
 
-    if(title === ''){
+    if(!title){
         return (
             <div className={styles.dashboardContainer}>
                 <HomeBtn path="/student" />
