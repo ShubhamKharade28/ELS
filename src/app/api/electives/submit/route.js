@@ -5,6 +5,7 @@ import Elective from "@/utils/models/elective";
 import { ObjectId } from "mongodb";
 
 function updateSubjectCount(id,subjectName){
+    // Search subject to update it's count
     let filter = {
         _id: new ObjectId(id),
         'students': {
@@ -14,6 +15,7 @@ function updateSubjectCount(id,subjectName){
         }
     };
     
+    // Increase count by 1
     let update = {
         $inc: {
             'subjects.$.count': 1,
@@ -24,6 +26,7 @@ function updateSubjectCount(id,subjectName){
 }
 
 function updateElective(id,studentName,prn,subjectName){
+    // Search student with name and prn
     let filter = {
         _id: new ObjectId(id),
         'students': {
@@ -33,6 +36,7 @@ function updateElective(id,studentName,prn,subjectName){
             }
         }
     };
+    // Set elective to given subject name and increase count of that subject
     let update = {
         $set: {
             'students.$.elective': subjectName,
@@ -43,6 +47,7 @@ function updateElective(id,studentName,prn,subjectName){
     }
     let student = Elective.findOneAndUpdate(filter,update);
     if(student){
+        // update subject count thorough helper function
         updateSubjectCount(id,subjectName);
     }
     return student;
@@ -50,6 +55,7 @@ function updateElective(id,studentName,prn,subjectName){
 
 export async function POST(req){
     try {
+        // Get query parameters
         req = await req.json();
         const id = req.electiveId;
         const studentName = req.studentName;
@@ -58,8 +64,8 @@ export async function POST(req){
         
         await connectDB();
 
+        // Update elective through helper function
         let res = updateElective(id, studentName, prn, subjectName);
-        // console.log(res);
 
         await closeDB();
 
