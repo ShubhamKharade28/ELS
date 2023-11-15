@@ -6,7 +6,7 @@ import Elective from "@/utils/models/elective";
 export async function GET(request, {params}){
     try {
         let adminId = params.id;
-
+        
         await client.connect();
         let electives = await Elective.find({
             adminId

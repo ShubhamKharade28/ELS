@@ -13,6 +13,7 @@ function updateSubjectCount(id,subjectName){
             }
         }
     };
+    
     let update = {
         $inc: {
             'subjects.$.count': 1,

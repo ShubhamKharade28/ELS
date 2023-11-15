@@ -7,7 +7,6 @@ import { ObjectId } from "mongodb";
 
 export async function GET(req, {params}){
     try{
-
         await client.connect();
         const id = params.id;
 

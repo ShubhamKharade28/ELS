@@ -11,7 +11,7 @@ export async function POST(req){
                 error: 'SERVER Error : Invalid credentials'
             }, { status: 422 });
         }
-
+        
         if(req.subjects.length == 0){
             return NextResponse.json({
                 error: 'SERVER Error : Empty subject list',
