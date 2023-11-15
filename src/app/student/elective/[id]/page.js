@@ -56,7 +56,6 @@ const ElectiveForm = ({params}) => {
             alert("Select a course");
             return;
         }
-
         
         try{
             setSubmitting(true);
