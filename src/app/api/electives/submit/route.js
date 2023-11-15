@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import client from '@/utils/db/db.config';
+import { connectDB, closeDB } from '@/utils/db/db.config';
 import Elective from "@/utils/models/elective";
 import { ObjectId } from "mongodb";
 
@@ -56,15 +56,19 @@ export async function POST(req){
         const subjectName = req.subjectName;
         const prn = req.prn;
         
-        await client.connect();
+        await connectDB();
 
         let res = updateElective(id, studentName, prn, subjectName);
-        console.log(res);
+        // console.log(res);
+
+        await closeDB();
+
         return NextResponse.json({
             success: true,
         });
     }catch(error){
         console.log(error);
+        await closeDB();
         return NextResponse.json({
             error: 'Internal server error',
             success: false,

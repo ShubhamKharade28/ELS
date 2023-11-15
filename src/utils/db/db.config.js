@@ -13,4 +13,20 @@ export const client = new MongoClient(uri, {
 
 export const database = client.db("ele-allot");
 
+export const connectDB = async () => {
+  try{
+    await client.connect();
+  }catch(e){
+    console.log(e);
+  }
+}
+
+export const closeDB = async () => {
+  try{
+    await client.close();
+  }catch(e){
+    console.log(e);
+  }
+}
+
 export default client;

@@ -23,7 +23,7 @@ const AdminLogin = () => {
 
         setLoading(true);
 
-        let res = await fetch('/api/auth/login/admin', {
+        let res = await fetch('/api/auth/login/', {
             method: 'POST',
             body: JSON.stringify({
                 email,

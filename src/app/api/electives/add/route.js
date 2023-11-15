@@ -1,4 +1,4 @@
-import client from "@/utils/db/db.config";
+import { connectDB, closeDB } from "@/utils/db/db.config";
 import { NextResponse } from "next/server";
 import Elective from "@/utils/models/elective";
 
@@ -49,15 +49,16 @@ export async function POST(req){
             maxLimit: maxLimit,
         };
 
-        await client.connect();
+        await connectDB();
         
         let res = await Elective.insertOne(newElective);
-        client.close();
+
+        await closeDB();
         return NextResponse.json(res);
 
     }catch(error){
         console.log(error);
-        client.close();
+        closeDB();
         return NextResponse.json({
             error: 'Server Error : Network Connection Error',
         }, { status: 404});
