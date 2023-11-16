@@ -1,0 +1,23 @@
+{
+    _id: String,
+    title: String,
+    adminId: String,
+    subjects: Array({
+        name: String,
+        count: Number,
+    }),
+    students: Array({
+        name: String,
+        prn: String,
+        elective: String,
+    }),
+    count: Number,
+    maxLimit: Number,
+}
+
+Listen I have to make three updates,
+1. Increase the count by one of the subject object with a "subjectName" in the subjects array 
+2. Set the elective to "subjectName" of the student object in with properties "studentName" and "prn" in students array
+3. Increase the count by one in the root of elective object
+
+It' the first day of 75 hard challenge;

@@ -16,16 +16,20 @@ export const database = client.db("ele-allot");
 export const connectDB = async () => {
   try{
     await client.connect();
+    return { isConnected: true, }
   }catch(e){
-    console.log(e);
+    console.log('Error connecting to database');
+    return { isConnected: false, }
   }
 }
 
 export const closeDB = async () => {
   try{
     await client.close();
+    return { isConnected: false, }
   }catch(e){
-    console.log(e);
+    console.log('Error disconnecting from database');
+    return { isConnected: true, }
   }
 }
 

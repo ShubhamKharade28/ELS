@@ -73,7 +73,7 @@ const ElectiveForm = ({params}) => {
             });
 
             res = await res.json();
-            if(res.success){
+            if(!!res.success){
                 setBtnVal('Submitted Successfully');
             }
             else{

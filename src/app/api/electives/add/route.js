@@ -44,7 +44,7 @@ export async function POST(req){
             title: req.title,
             adminId: req.adminId,
             subjects: subjectList,
-            students: req.students,
+            students: students,
             count: 0,
             maxLimit: maxLimit,
         };
