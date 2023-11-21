@@ -4,105 +4,7 @@ import { connectDB, closeDB } from '@/utils/db/db.config';
 import Elective from "@/utils/models/elective";
 import { ObjectId } from "mongodb";
 
-async function submitElective(electiveId, studentName, prn, subjectName){
-    try{
-        // Find elective by ID
-        const elective = await Elective.findOne({ _id: new ObjectId(electiveId)});
 
-        if(!elective){
-            throw new Error('Elective not found');
-        }
-
-        
-        const subject = elective.subjects.find((s) => s.name === subjectName);
-
-        if(!subject){
-            throw new Error('Subject not found in the elective');
-        }
-
-        // Check if the subject has reached the maximum limit
-        if(subject.count >= elective.maxLimit){
-            throw new Error('Subject has reached the max limit');
-        }
-
-        const student = elective.students.find((stu) => stu.prn === prn);
-
-        if(!student){
-            throw new Error('Non-existing PRN');
-        }
-
-        // Check if the student with given prn has already submitted the form
-        if(student.elective !== "-"){
-            throw new Error('Student has already submitted the form');
-        }
-
-        // Check if student has entered his name correctly
-        const nameFrags = studentName.split(' ');
-        let fragMatched = 0;
-        let dbStudentName = student.name;
-        dbStudentName = dbStudentName.toLowerCase();
-        nameFrags.forEach(frag => {
-            frag = frag.toLowerCase();
-            if(dbStudentName.includes(frag)){
-                fragMatched++;
-            }
-        });
-
-        if(fragMatched < 2){
-            throw new Error('Invalid name or prn');
-        }
-
-        const setElectiveResult = await Elective.updateOne(
-            {
-                _id: new ObjectId(electiveId),
-                'students.name': studentName,
-                'students.prn': prn,
-            },
-            {
-                $set: {
-                    'students.$.elective': subjectName,
-                },
-            }
-        );
-
-        const incSubjectCountResult = await Elective.updateOne(
-            {
-                _id: new ObjectId(electiveId),
-                'subjects.name': newElective,
-            },
-            {
-                $inc: {
-                    count: 1, // Increment the count of students in the elective
-                    'subjects.$.count': 1, // Increment the count of the selected subject
-                },
-            }
-        );
-
-        const incEnrolledStudentsResult = await Elective.updateOne(
-            { 
-                _id: new ObjectId(electiveId),
-            },
-            {
-                $inc: {
-                    count: 1,
-                }
-            }
-        )
-        return {
-            setElectiveResult,
-            incSubjectCountResult,
-            incEnrolledStudentsResult,
-        }
-    }catch(e){
-        console.log(e);
-        throw new Error(e);
-        return {
-            setElectiveResult: "NA",
-            incEnrolledStudentsResult: "NA",
-            incSubjectCountResult: "NA"
-        }
-    }
-}
 
 export async function POST(req){
     try {
@@ -111,7 +13,7 @@ export async function POST(req){
         const electiveId = req.electiveId;
         const studentName = req.studentName;
         const subjectName = req.subjectName;
-        const prn = req.prn;
+        const prn = req.studentPrn;
         
         let db = await connectDB();
         // let cnt = 0;
@@ -138,13 +40,16 @@ export async function POST(req){
             throw new Error('Subject has reached the max limit');
         }
 
-        const student = elective.students.find((stu) => stu.prn === prn);
+        const student = elective.students.find((stu) => stu.prn && stu.prn === prn);
 
         if(!student){
+            console.log(req.prn);
             throw new Error('Non-existing PRN');
         }
 
         // Check if the student with given prn has already submitted the form
+        console.log(req);
+        console.log('students', elective.students);
         if(student.elective !== "-"){
             return NextResponse.json({
                 success: false,

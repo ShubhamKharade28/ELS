@@ -28,17 +28,17 @@ export async function POST(req){
             });
         });
 
-        let students = [{ name: String, prn: String, elective: String}];
+        let students = [];
         req.students.forEach(element => {
             let student = {
                 name: element.name,
-                prn: toString(element.prn),
+                prn: element.prn.toString(),
                 elective: "-"
             }
             students.push(student);
         });
 
-        let maxLimit = Math.floor(req.students.length / subjects.length) + (req.students.length % subjects.length);
+        let maxLimit = Math.floor(students.length / subjects.length) + (students.length % subjects.length);
 
         let newElective = {
             title: req.title,
