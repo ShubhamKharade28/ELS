@@ -5,7 +5,7 @@ import Elective from "@/utils/models/elective";
 export async function POST(req){
     try{
         req = await req.json();
-        console.log(req);
+        // console.log(req);
         if(!req.title || !req.adminId || !req.subjects){
             return NextResponse.json({
                 error: 'SERVER Error : Invalid credentials'

@@ -17,8 +17,6 @@ const AddElective = () => {
     const [subjects, setSubjects] = useState([]);
     const [students, setStudents] = useState([]);
     const [inputSubject, setInputSubject] = useState('');
-    // const [inputStudentName, setInputStudentName] = useState('');
-    // const [inputStudentPrn, setInputStudentPrn] = useState('');
     const [btnVal, setBtnVal] = useState('Submit');
     const [loading, setLoading] = useState(false);
 
@@ -30,24 +28,8 @@ const AddElective = () => {
         e.preventDefault();
         if(subjects.includes(inputSubject)) return;
         setSubjects((prev) => [...prev, inputSubject]);
+		setInputSubject('');
     }
-
-    // const AddStudent = (e) => {
-    //     e.preventDefault();
-    //     if(students.includes({
-    //         name: inputStudentName,
-    //         prn: inputStudentPrn
-    //     })) return;
-    //     setStudents((prev) => {
-    //         return [
-    //             ...prev,
-    //             {
-    //                 name: inputStudentName,
-    //                 prn: inputStudentPrn
-    //             }
-    //         ]
-    //     });
-    // }
 
     const removeSubject = (subjectToRemove) => {
         setSubjects((prev) => {
@@ -212,13 +194,6 @@ const AddElective = () => {
               <span>Choose from excelsheet</span>
               <input type="file" onChange={handleXlFile} />
             </div>
-            {/* <form className={styles.studentInputContainer}>
-                        <input value={inputStudentName} onChange={(e) => setInputStudentName(e.target.value)}
-                        type='text' placeholder='Name'/>
-                        <input value={inputStudentPrn} onChange={(e) => setInputStudentPrn(e.target.value)}
-                        type='text' placeholder='PRN' />
-                        <button onClick={AddStudent}>Add</button>
-                    </form> */}
             <ul className={styles.studentsAdded}>
               {students.map((student, index) => {
                 return (
